@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../helpers/auth.dart';
+import '../widgets/veggies_container.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -37,7 +38,6 @@ class _HomeScreenState extends State<HomeScreen> {
             Container(
               height: 150,
               decoration: BoxDecoration(
-                color: Colors.red,
                 borderRadius: BorderRadius.circular(25),
                 image: const DecorationImage(
                   fit: BoxFit.cover,
@@ -47,8 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               child: Row(
                 children: [
-                  Expanded(
-                      child: Column(
+                  Column(
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(right: 115),
@@ -112,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       )
                     ],
-                  )),
+                  ),
                   Expanded(child: Container())
                 ],
               ),
@@ -122,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SizedBox(
               width: double.maxFinite,
-              height: 300,
+              height: 30,
               child: Column(
                 children: [
                   Padding(
@@ -149,7 +148,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-            )
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  VeggiesContainer(),
+                  VeggiesContainer(),
+                  VeggiesContainer(),
+                  VeggiesContainer(),
+                ],
+              ),
+            ),
           ],
         ),
       ),
