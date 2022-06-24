@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "675872155784",
+    "project_id": "veggies-app-420",
+    "storage_bucket": "veggies-app-420.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:675872155784:android:9b7d2a956b68379aafd73d",
+        "android_client_info": {
+          "package_name": "com.example.veggies_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "675872155784-nvr8re13nkf2sp27v2pncmdm2drq7d34.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCryeh5Hv44hLv5bHAx4KoBTKlze3lKBhg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "675872155784-nvr8re13nkf2sp27v2pncmdm2drq7d34.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "675872155784-1thlhbfbro9calnj2in56qfal36gstgk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.veggiesApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
