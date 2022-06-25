@@ -5,6 +5,7 @@ import 'firebase_options.dart';
 
 import './screens/auth_screen.dart';
 import './helpers/auth.dart';
+import './ui/colors.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,7 +16,7 @@ void main() async {
 }
 
 class MyApp extends StatefulWidget {
- const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -30,7 +31,6 @@ class _MyAppState extends State<MyApp> {
   }
 
   pageSetter() {
-    
     if (token != null) {
       setState(() {
         currentPage = const HomeScreen();
@@ -51,8 +51,8 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.yellow,
-      ),
+          primaryColor: AppColor.primaryColor,
+          primarySwatch: AppColor.primarySwatch),
       home: currentPage,
       routes: {
         '/homescreen': (context) => const HomeScreen(),

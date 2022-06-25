@@ -4,6 +4,7 @@ import '../helpers/auth.dart';
 import '../widgets/homescreen/veggies_container.dart';
 import '../widgets/homescreen/home_banner.dart';
 import '../widgets/app_drawer.dart';
+import '../ui/colors.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.black),
-        backgroundColor: const Color(0xffd6b738),
+        backgroundColor: AppColor.primaryColor,
         title: const Text(
           'Veggies App',
           style: TextStyle(color: Colors.black),

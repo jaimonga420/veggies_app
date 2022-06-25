@@ -12,11 +12,24 @@ class AppDrawer extends StatelessWidget {
           DrawerHeader(
             child: Row(
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   backgroundColor: Colors.white,
                   radius: 42,
                   child: CircleAvatar(
                     radius: 40,
+                    child: Text(
+                      'Vegi',
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                          shadows: [
+                            BoxShadow(
+                              color: Colors.green.shade900,
+                              offset: const Offset(4, 0),
+                            )
+                          ]),
+                    ),
                   ),
                 ),
                 const SizedBox(
