@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../helpers/auth.dart';
 
 class AuthScreen extends StatelessWidget {
-  AuthScreen({Key? key}) : super(key: key);
+  const AuthScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

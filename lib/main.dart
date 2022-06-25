@@ -11,11 +11,11 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  MyApp({Key? key}) : super(key: key);
+ const MyApp({Key? key}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -23,14 +23,14 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Auth auth = Auth();
-  Widget currentPage = AuthScreen();
+  Widget currentPage = const AuthScreen();
   String? token;
   Future<void> getToken() async {
     token = (await auth.getToken())!;
   }
 
   pageSetter() {
-    print(token);
+    
     if (token != null) {
       setState(() {
         currentPage = const HomeScreen();
@@ -51,7 +51,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.yellow,
       ),
       home: currentPage,
       routes: {

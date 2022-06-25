@@ -34,7 +34,7 @@ class VeggiesContainer extends StatelessWidget {
                   '₹50/Kg',
                   style: TextStyle(color: Colors.grey, fontSize: 14),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Row(

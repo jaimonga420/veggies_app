@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -26,6 +28,7 @@ class Auth {
         final AuthCredential authCredentials = GoogleAuthProvider.credential(
             accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
         try {
+          // ignore: unused_local_variable
           UserCredential userCredentials =
               await fireAuth.signInWithCredential(authCredentials);
 
