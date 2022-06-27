@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "675872155784-2u6tpscb8u549do9uo54klv7p11f1tos.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.veggies_app",
+            "certificate_hash": "508edaca3a300ad36cbd0a3fe13ea4d19aaa0110"
+          }
+        },
+        {
           "client_id": "675872155784-nvr8re13nkf2sp27v2pncmdm2drq7d34.apps.googleusercontent.com",
           "client_type": 3
         }

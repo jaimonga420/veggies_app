@@ -1,10 +1,29 @@
 import 'package:flutter/material.dart';
 
-class VeggiesContainer extends StatelessWidget {
-  const VeggiesContainer({Key? key}) : super(key: key);
+import '../../screens/single_product_screen.dart';
+
+class VeggiesContainer extends StatefulWidget {
+  const VeggiesContainer(
+      {required this.productName,
+      required this.imagePath,
+      required this.price,
+      Key? key})
+      : super(key: key);
+
+  final String productName;
+  final String imagePath;
+  final String price;
 
   @override
+  State<VeggiesContainer> createState() => _VeggiesContainerState();
+}
+
+class _VeggiesContainerState extends State<VeggiesContainer> {
+  @override
   Widget build(BuildContext context) {
+    final productName = widget.productName;
+    final imagePath = widget.imagePath;
+    final price = widget.price;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 5),
       height: 250,
@@ -15,10 +34,22 @@ class VeggiesContainer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            width: 150,
-            child: Image.asset(
-              'assets/products/cabbage.png',
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).pushNamed(SingleProductScreen.routeName,
+                  arguments: {
+                    'productName': productName,
+                    'imagePath': imagePath,
+                    'price': price
+                  });
+            },
+            child: SizedBox(
+              width: 150,
+              height: 150,
+              child: Image.network(
+                widget.imagePath,
+                fit: BoxFit.contain,
+              ),
             ),
           ),
           Padding(
@@ -26,13 +57,13 @@ class VeggiesContainer extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Cabbage',
-                  style: TextStyle(color: Colors.black, fontSize: 16),
+                Text(
+                  widget.productName,
+                  style: const TextStyle(color: Colors.black, fontSize: 16),
                 ),
-                const Text(
-                  '₹50/Kg',
-                  style: TextStyle(color: Colors.grey, fontSize: 14),
+                Text(
+                  '${widget.price}/Kg',
+                  style: const TextStyle(color: Colors.grey, fontSize: 14),
                 ),
                 const SizedBox(
                   height: 15,

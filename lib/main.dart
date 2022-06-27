@@ -4,8 +4,10 @@ import 'package:veggies_app/screens/home_screen.dart';
 import 'firebase_options.dart';
 
 import './screens/auth_screen.dart';
+import 'screens/single_product_screen.dart';
 import './helpers/auth.dart';
 import './ui/colors.dart';
+import './screens/profile_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,9 +55,11 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
           primaryColor: AppColor.primaryColor,
           primarySwatch: AppColor.primarySwatch),
-      home: currentPage,
+      home: const HomeScreen(),
       routes: {
         '/homescreen': (context) => const HomeScreen(),
+        '/singleproductscreen': (context) => const SingleProductScreen(),
+        '/profile-screen': (context) => const ProfileScreen(),
       },
     );
   }

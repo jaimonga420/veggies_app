@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../screens/profile_screen.dart';
+import '../screens/home_screen.dart';
+
 class AppDrawer extends StatelessWidget {
   const AppDrawer({Key? key}) : super(key: key);
 
@@ -73,14 +76,21 @@ class AppDrawer extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                drawerItem(Icons.home_outlined, 'Home'),
-                drawerItem(Icons.shopping_bag_outlined, 'Cart'),
-                drawerItem(Icons.account_circle_outlined, 'My Profile'),
-                drawerItem(Icons.notifications_outlined, 'Notifications'),
-                drawerItem(Icons.star_outline, 'Ratings & Reviews'),
-                drawerItem(Icons.shopping_basket_outlined, 'Wishlist'),
-                drawerItem(Icons.headphones_outlined, 'Raise A Complain'),
-                drawerItem(Icons.message_outlined, 'FAQs'),
+                drawerItem(Icons.home_outlined, 'Home', () {
+                  Navigator.of(context).popAndPushNamed(HomeScreen.routeName);
+                }),
+                drawerItem(Icons.shopping_bag_outlined, 'Cart', () {}),
+                drawerItem(Icons.account_circle_outlined, 'My Profile', () {
+                  Navigator.of(context)
+                      .popAndPushNamed(ProfileScreen.routeName);
+                }),
+                drawerItem(
+                    Icons.notifications_outlined, 'Notifications', () {}),
+                drawerItem(Icons.star_outline, 'Ratings & Reviews', () {}),
+                drawerItem(Icons.shopping_basket_outlined, 'Wishlist', () {}),
+                drawerItem(
+                    Icons.headphones_outlined, 'Raise A Complain', () {}),
+                drawerItem(Icons.message_outlined, 'FAQs', () {}),
                 const SizedBox(
                   height: 10,
                 ),
@@ -125,9 +135,11 @@ class AppDrawer extends StatelessWidget {
     );
   }
 
-  Widget drawerItem(IconData icon, String title) {
+  Widget drawerItem(IconData icon, String title, Function onTap) {
     return TextButton.icon(
-        onPressed: () {},
+        onPressed: () {
+          onTap();
+        },
         icon: Icon(
           icon,
           size: 32,
