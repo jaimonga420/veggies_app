@@ -15,24 +15,12 @@ class AppDrawer extends StatelessWidget {
           DrawerHeader(
             child: Row(
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   backgroundColor: Colors.white,
                   radius: 42,
                   child: CircleAvatar(
                     radius: 40,
-                    child: Text(
-                      'Vegi',
-                      style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white,
-                          shadows: [
-                            BoxShadow(
-                              color: Colors.green.shade900,
-                              offset: const Offset(4, 0),
-                            )
-                          ]),
-                    ),
+                    backgroundImage: AssetImage('assets/images/vegi.png'),
                   ),
                 ),
                 const SizedBox(
@@ -77,12 +65,11 @@ class AppDrawer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 drawerItem(Icons.home_outlined, 'Home', () {
-                  Navigator.of(context).popAndPushNamed(HomeScreen.routeName);
+                  Navigator.popAndPushNamed(context, HomeScreen.routeName);
                 }),
                 drawerItem(Icons.shopping_bag_outlined, 'Cart', () {}),
                 drawerItem(Icons.account_circle_outlined, 'My Profile', () {
-                  Navigator.of(context)
-                      .popAndPushNamed(ProfileScreen.routeName);
+                  Navigator.pushNamed(context, ProfileScreen.routeName);
                 }),
                 drawerItem(
                     Icons.notifications_outlined, 'Notifications', () {}),

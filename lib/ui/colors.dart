@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppColor {
   static const primaryColor = Color(0xffd6b738);
+  static const scaffoldColor = Color(0xffcbcbcb);
   static const MaterialColor primarySwatch = MaterialColor(
     0xffd6b738, // 0% comes in here, this will be color picked if no shade is selected when defining a Color property which doesn’t require a swatch.
     <int, Color>{

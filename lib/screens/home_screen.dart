@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:veggies_app/ui/colors.dart';
 
 import '../helpers/auth.dart';
 import '../widgets/homescreen/veggies_container.dart';
@@ -23,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffcbcbcb),
+      backgroundColor: AppColor.scaffoldColor,
       drawer: const AppDrawer(),
       appBar: const CustomAppBar(title: 'Veggies App'),
       body: Padding(

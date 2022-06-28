@@ -11,8 +11,7 @@ class HomeBanner extends StatelessWidget {
         borderRadius: BorderRadius.circular(25),
         image: const DecorationImage(
           fit: BoxFit.cover,
-          image: NetworkImage(
-              'https://www.thespruceeats.com/thmb/ZnWDXm0VjfY2wy25ocFqZccy5YY=/2164x1217/smart/filters:no_upscale()/freshvegetablesAlexRaths-4c1ea186a88e4fd7b95283eee614600c.jpg'),
+          image: AssetImage('assets/images/banner.jpg'),
         ),
       ),
       child: Row(
