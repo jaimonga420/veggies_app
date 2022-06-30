@@ -27,11 +27,15 @@ class SearchItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
                     Text(
                       'productName',
                       style: TextStyle(
                           color: Colors.black, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 4,
                     ),
                     Text(
                       '₹50/kg',

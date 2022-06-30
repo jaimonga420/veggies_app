@@ -9,6 +9,7 @@ import './helpers/auth.dart';
 import './ui/colors.dart';
 import './screens/profile_screen.dart';
 import './screens/search_screen.dart';
+import './screens/cart_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -62,6 +63,7 @@ class _MyAppState extends State<MyApp> {
         '/singleproductscreen': (context) => const SingleProductScreen(),
         '/profile-screen': (context) => const ProfileScreen(),
         '/search-screen': (context) => const SearchScreen(),
+        '/cart-screen': (context) => const CartScreen(),
       },
     );
   }

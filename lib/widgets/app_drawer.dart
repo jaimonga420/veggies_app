@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../screens/profile_screen.dart';
 import '../screens/home_screen.dart';
+import '../screens/cart_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({Key? key}) : super(key: key);
@@ -67,7 +68,9 @@ class AppDrawer extends StatelessWidget {
                 drawerItem(Icons.home_outlined, 'Home', () {
                   Navigator.popAndPushNamed(context, HomeScreen.routeName);
                 }),
-                drawerItem(Icons.shopping_bag_outlined, 'Cart', () {}),
+                drawerItem(Icons.shopping_bag_outlined, 'Cart', () {
+                  Navigator.of(context).pushNamed(CartScreen.routeName);
+                }),
                 drawerItem(Icons.account_circle_outlined, 'My Profile', () {
                   Navigator.pushNamed(context, ProfileScreen.routeName);
                 }),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../ui/colors.dart';
 import '../screens/search_screen.dart';
+import '../screens/cart_screen.dart';
 
 class CustomAppBar extends StatefulWidget with PreferredSizeWidget {
   const CustomAppBar({required this.title, Key? key}) : super(key: key);
@@ -32,7 +33,11 @@ class _CustomAppBarState extends State<CustomAppBar> {
               Navigator.of(context).pushNamed(SearchScreen.routeName);
             },
             icon: const Icon(Icons.search)),
-        IconButton(onPressed: () {}, icon: const Icon(Icons.shopping_bag))
+        IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed(CartScreen.routeName);
+            },
+            icon: const Icon(Icons.shopping_bag))
       ],
     );
   }
