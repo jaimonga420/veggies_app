@@ -18,6 +18,7 @@ class _SingleProductScreenState extends State<SingleProductScreen> {
   Widget build(BuildContext context) {
     final routeArgs =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+  
     return Scaffold(
       backgroundColor: const Color(0xffcbcbcb),
       drawer: const AppDrawer(),

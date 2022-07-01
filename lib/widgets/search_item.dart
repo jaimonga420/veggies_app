@@ -3,7 +3,16 @@ import 'package:flutter/material.dart';
 import '../ui/colors.dart';
 
 class SearchItem extends StatelessWidget {
-  const SearchItem({Key? key}) : super(key: key);
+  const SearchItem(
+      {required this.productName,
+      required this.imagePath,
+      required this.price,
+      Key? key})
+      : super(key: key);
+
+  final String imagePath;
+  final String productName;
+  final int price;
 
   @override
   Widget build(BuildContext context) {
@@ -12,10 +21,11 @@ class SearchItem extends StatelessWidget {
       child: Row(children: [
         Expanded(
           child: SizedBox(
-            height: 100,
+            height: 80,
             child: Center(
               child: Image.network(
-                  'https://freepngimg.com/thumb/apple/9-apple-png-image.png'),
+                imagePath,
+              ),
             ),
           ),
         ),
@@ -28,18 +38,18 @@ class SearchItem extends StatelessWidget {
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
-                      'productName',
-                      style: TextStyle(
+                      productName,
+                      style: const TextStyle(
                           color: Colors.black, fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 4,
                     ),
                     Text(
-                      '₹50/kg',
-                      style: TextStyle(color: Colors.grey),
+                      '₹${price.toString()}',
+                      style: TextStyle(color: Colors.grey.shade800),
                     ),
                   ],
                 ),

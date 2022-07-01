@@ -12,6 +12,7 @@ import './screens/profile_screen.dart';
 import './screens/search_screen.dart';
 import './screens/cart_screen.dart';
 import './providers/product_provider.dart';
+import './screens/products_list_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -68,6 +69,7 @@ class _MyAppState extends State<MyApp> {
           '/profile-screen': (context) => const ProfileScreen(),
           '/search-screen': (context) => const SearchScreen(),
           '/cart-screen': (context) => const CartScreen(),
+          '/products-list-screen': (context) => const ProductsListScreen(),
         },
       ),
     );

@@ -49,8 +49,7 @@ class SearchScreen extends StatelessWidget {
                   suffixIcon: const Icon(Icons.search)),
             ),
           ),
-          const SearchItem(),
-          const SearchItem(),
+          
         ],
       ),
     );

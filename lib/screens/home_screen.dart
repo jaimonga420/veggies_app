@@ -8,6 +8,7 @@ import '../widgets/homescreen/home_banner.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/custom_appbar.dart';
 import '../providers/product_provider.dart';
+import './products_list_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -35,7 +36,10 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(
               height: 30,
             ),
-            headings('Herbs Seasoning'),
+            headings('Herbs Seasoning', () {
+              Navigator.of(context).pushNamed(ProductsListScreen.routeName,
+                  arguments: productProvider.vegetableslist);
+            }),
             SizedBox(
               height: 250,
               child: ListView.builder(
@@ -53,7 +57,10 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(
               height: 30,
             ),
-            headings('Fresh Fruits'),
+            headings('Fresh Fruits', () {
+              Navigator.of(context).pushNamed(ProductsListScreen.routeName,
+                  arguments: productProvider.fruitslist);
+            }),
             SizedBox(
               height: 250,
               child: ListView.builder(
@@ -73,10 +80,10 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget headings(String title) {
+  Widget headings(String title, Function onTap) {
     return SizedBox(
       width: double.maxFinite,
-      height: 30,
+      height: 48,
       child: Column(
         children: [
           Padding(
@@ -91,13 +98,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontSize: 16,
                       fontWeight: FontWeight.w500),
                 ),
-                Text(
-                  'View All',
-                  style: TextStyle(
-                    color: Colors.grey.shade600,
-                    fontSize: 16,
-                  ),
-                )
+                TextButton(
+                    onPressed: () {
+                      onTap();
+                    },
+                    child: Text(
+                      'View All',
+                      style: TextStyle(
+                        color: Colors.grey.shade600,
+                        fontSize: 16,
+                      ),
+                    ))
               ],
             ),
           ),
