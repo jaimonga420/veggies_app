@@ -56,9 +56,9 @@ class _SingleProductScreenState extends State<SingleProductScreen> {
                   fontSize: 15,
                 ),
               ),
-              quantitySelector('500gm'),
-              quantitySelector('1Kg'),
-              quantitySelector('2Kg'),
+              quantitySelector('500gm', routeArgs['price']),
+              quantitySelector('1Kg', routeArgs['price']),
+              quantitySelector('2Kg', routeArgs['price']),
             ],
           ),
         ]),
@@ -66,16 +66,41 @@ class _SingleProductScreenState extends State<SingleProductScreen> {
     );
   }
 
-  Widget quantitySelector(String quan) {
+  Widget quantitySelector(String quan, int price) {
+    String text;
+    switch (quan) {
+      case '500gm':
+        text = '${(price * 0.5).round()} ';
+        break;
+      case '2Kg':
+        text = '${(price * 2 * 0.9).round()} ';
+        break;
+      default:
+        text = '$price';
+    }
     return Padding(
       padding: const EdgeInsets.only(top: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            quan,
-            style: const TextStyle(
-                color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                quan,
+                style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                '₹$text',
+                style: TextStyle(
+                  color: Colors.grey.shade800,
+                  fontSize: 15,
+                ),
+              ),
+            ],
           ),
           Container(
             height: 40,

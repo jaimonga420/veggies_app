@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:veggies_app/ui/colors.dart';
+import 'package:provider/provider.dart';
 
 import '../helpers/auth.dart';
 import '../widgets/homescreen/veggies_container.dart';
 import '../widgets/homescreen/home_banner.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/custom_appbar.dart';
+import '../providers/product_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -17,12 +18,11 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final auth = Auth();
-  final Stream<QuerySnapshot> _vegStream =
-      FirebaseFirestore.instance.collection('products').snapshots();
-  final Stream<QuerySnapshot> _fruitStream =
-      FirebaseFirestore.instance.collection('fruits').snapshots();
   @override
   Widget build(BuildContext context) {
+    ProductProvider productProvider = Provider.of<ProductProvider>(context);
+    productProvider.fetchvegetables();
+    productProvider.fetchfruits();
     return Scaffold(
       backgroundColor: AppColor.scaffoldColor,
       drawer: const AppDrawer(),
@@ -38,24 +38,16 @@ class _HomeScreenState extends State<HomeScreen> {
             headings('Herbs Seasoning'),
             SizedBox(
               height: 250,
-              child: StreamBuilder(
-                  stream: _vegStream,
-                  builder: (context, AsyncSnapshot snapshot) {
-                    if (!snapshot.hasData) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    final documents = snapshot.data.docs;
-                    return ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: documents.length,
-                        itemBuilder: (context, index) {
-                          return VeggiesContainer(
-                              productName: documents[index]['productname'],
-                              imagePath: documents[index]['imagepath'],
-                              price: documents[index]['price']);
-                        });
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: productProvider.vegetableslist.length,
+                  itemBuilder: (context, index) {
+                    return VeggiesContainer(
+                        productName:
+                            productProvider.vegetableslist[index].productName,
+                        imagePath:
+                            productProvider.vegetableslist[index].imagePath,
+                        price: productProvider.vegetableslist[index].price);
                   }),
             ),
             const SizedBox(
@@ -64,24 +56,15 @@ class _HomeScreenState extends State<HomeScreen> {
             headings('Fresh Fruits'),
             SizedBox(
               height: 250,
-              child: StreamBuilder(
-                  stream: _fruitStream,
-                  builder: (context, AsyncSnapshot snapshot) {
-                    if (!snapshot.hasData) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    final documents = snapshot.data.docs;
-                    return ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: documents.length,
-                        itemBuilder: (context, index) {
-                          return VeggiesContainer(
-                              productName: documents[index]['productname'],
-                              imagePath: documents[index]['imagepath'],
-                              price: documents[index]['price']);
-                        });
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: productProvider.fruitslist.length,
+                  itemBuilder: (context, index) {
+                    return VeggiesContainer(
+                        productName:
+                            productProvider.fruitslist[index].productName,
+                        imagePath: productProvider.fruitslist[index].imagePath,
+                        price: productProvider.fruitslist[index].price);
                   }),
             ),
           ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:veggies_app/screens/home_screen.dart';
 import 'firebase_options.dart';
+import 'package:provider/provider.dart';
 
 import './screens/auth_screen.dart';
 import 'screens/single_product_screen.dart';
@@ -10,6 +11,7 @@ import './ui/colors.dart';
 import './screens/profile_screen.dart';
 import './screens/search_screen.dart';
 import './screens/cart_screen.dart';
+import './providers/product_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,19 +54,22 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          primaryColor: AppColor.primaryColor,
-          primarySwatch: AppColor.primarySwatch),
-      home: const HomeScreen(),
-      routes: {
-        '/homescreen': (context) => const HomeScreen(),
-        '/singleproductscreen': (context) => const SingleProductScreen(),
-        '/profile-screen': (context) => const ProfileScreen(),
-        '/search-screen': (context) => const SearchScreen(),
-        '/cart-screen': (context) => const CartScreen(),
-      },
+    return ChangeNotifierProvider<ProductProvider>(
+      create: (context) => ProductProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+            primaryColor: AppColor.primaryColor,
+            primarySwatch: AppColor.primarySwatch),
+        home: const HomeScreen(),
+        routes: {
+          '/homescreen': (context) => const HomeScreen(),
+          '/singleproductscreen': (context) => const SingleProductScreen(),
+          '/profile-screen': (context) => const ProfileScreen(),
+          '/search-screen': (context) => const SearchScreen(),
+          '/cart-screen': (context) => const CartScreen(),
+        },
+      ),
     );
   }
 }

@@ -12,7 +12,7 @@ class VeggiesContainer extends StatefulWidget {
 
   final String productName;
   final String imagePath;
-  final String price;
+  final int price;
 
   @override
   State<VeggiesContainer> createState() => _VeggiesContainerState();
@@ -62,8 +62,8 @@ class _VeggiesContainerState extends State<VeggiesContainer> {
                   style: const TextStyle(color: Colors.black, fontSize: 16),
                 ),
                 Text(
-                  '${widget.price}/Kg',
-                  style: const TextStyle(color: Colors.grey, fontSize: 14),
+                  '₹${widget.price.toString()}/Kg',
+                  style: TextStyle(color: Colors.grey.shade800, fontSize: 14),
                 ),
                 const SizedBox(
                   height: 15,
