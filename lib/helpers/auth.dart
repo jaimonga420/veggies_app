@@ -4,8 +4,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
 
 import '../screens/home_screen.dart';
+import '../providers/user_provider.dart';
 
 class Auth {
   final FirebaseAuth fireAuth = FirebaseAuth.instance;
@@ -20,6 +22,8 @@ class Auth {
   }
 
   Future<void> googleSignIn(BuildContext context) async {
+    UserProvider userProvider =
+        Provider.of<UserProvider>(context, listen: false);
     try {
       final GoogleSignInAccount? googleUser = await signin.signIn();
       if (googleUser != null) {
@@ -31,7 +35,7 @@ class Auth {
           // ignore: unused_local_variable
           UserCredential userCredentials =
               await fireAuth.signInWithCredential(authCredentials);
-
+          userProvider.addUserData(fireAuth.currentUser);
           final fireToken = await fireAuth.currentUser!.getIdToken();
           storeToken(fireToken);
           Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);

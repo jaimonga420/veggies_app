@@ -12,6 +12,8 @@ import './screens/profile_screen.dart';
 import './screens/cart_screen.dart';
 import './providers/product_provider.dart';
 import './screens/products_list_screen.dart';
+import './providers/user_provider.dart';
+import './screens/auth_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -54,14 +56,21 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<ProductProvider>(
-      create: (context) => ProductProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<ProductProvider>(
+          create: ((context) => ProductProvider()),
+        ),
+        ChangeNotifierProvider<UserProvider>(
+          create: ((context) => UserProvider()),
+        )
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             primaryColor: AppColor.primaryColor,
             primarySwatch: AppColor.primarySwatch),
-        home: const HomeScreen(),
+        home: const AuthScreen(),
         routes: {
           '/homescreen': (context) => const HomeScreen(),
           '/singleproductscreen': (context) => const SingleProductScreen(),
