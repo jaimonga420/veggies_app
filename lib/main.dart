@@ -13,7 +13,6 @@ import './screens/cart_screen.dart';
 import './providers/product_provider.dart';
 import './screens/products_list_screen.dart';
 import './providers/user_provider.dart';
-import './screens/auth_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -70,7 +69,7 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
             primaryColor: AppColor.primaryColor,
             primarySwatch: AppColor.primarySwatch),
-        home: const AuthScreen(),
+        home: const HomeScreen(),
         routes: {
           '/homescreen': (context) => const HomeScreen(),
           '/singleproductscreen': (context) => const SingleProductScreen(),

@@ -47,11 +47,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemCount: productProvider.vegetableslist.length,
                   itemBuilder: (context, index) {
                     return VeggiesContainer(
-                        productName:
-                            productProvider.vegetableslist[index].productName,
-                        imagePath:
-                            productProvider.vegetableslist[index].imagePath,
-                        price: productProvider.vegetableslist[index].price);
+                      productName:
+                          productProvider.vegetableslist[index].productName,
+                      imagePath:
+                          productProvider.vegetableslist[index].imagePath,
+                      price: productProvider.vegetableslist[index].price,
+                      
+                    );
                   }),
             ),
             const SizedBox(
@@ -68,10 +70,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemCount: productProvider.fruitslist.length,
                   itemBuilder: (context, index) {
                     return VeggiesContainer(
-                        productName:
-                            productProvider.fruitslist[index].productName,
-                        imagePath: productProvider.fruitslist[index].imagePath,
-                        price: productProvider.fruitslist[index].price);
+                      productName:
+                          productProvider.fruitslist[index].productName,
+                      imagePath: productProvider.fruitslist[index].imagePath,
+                      price: productProvider.fruitslist[index].price,
+                      
+                    );
                   }),
             ),
           ],

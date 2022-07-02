@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import './quantity_selector.dart';
 
 import '../../screens/single_product_screen.dart';
 
 class VeggiesContainer extends StatefulWidget {
-  const VeggiesContainer(
+  VeggiesContainer(
       {required this.productName,
       required this.imagePath,
       required this.price,
@@ -81,7 +82,7 @@ class _VeggiesContainerState extends State<VeggiesContainer> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
                           Text(
-                            '50gm',
+                            '500gm',
                             style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,
@@ -97,36 +98,7 @@ class _VeggiesContainerState extends State<VeggiesContainer> {
                     const SizedBox(
                       width: 10,
                     ),
-                    Container(
-                      height: 35,
-                      width: 70,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: Colors.grey),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: const [
-                          Icon(
-                            Icons.remove,
-                            color: Color(0xffd0b84c),
-                            size: 18,
-                          ),
-                          Text(
-                            '1',
-                            style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black),
-                          ),
-                          Icon(
-                            Icons.add,
-                            color: Color(0xffd0b84c),
-                            size: 18,
-                          ),
-                        ],
-                      ),
-                    ),
+                    QuantitySelector(),
                   ],
                 )
               ],
