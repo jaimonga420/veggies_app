@@ -5,6 +5,7 @@ import '../models/product_model.dart';
 class ProductProvider with ChangeNotifier {
   List<ProductModel> vegetables = [];
   List<ProductModel> fruits = [];
+  List<ProductModel> allItems = [];
 
   fetchvegetables() async {
     QuerySnapshot<Map<String, dynamic>> snapshot =
@@ -44,11 +45,20 @@ class ProductProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  fetchAllItems() {
+    allItems = List.from(vegetableslist)..addAll(fruitslist);
+    allItems;
+  }
+
   List<ProductModel> get vegetableslist {
     return vegetables;
   }
 
   List<ProductModel> get fruitslist {
     return fruits;
+  }
+
+  List<ProductModel> get allItemsList {
+    return allItems;
   }
 }

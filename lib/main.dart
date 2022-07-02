@@ -9,7 +9,6 @@ import 'screens/single_product_screen.dart';
 import './helpers/auth.dart';
 import './ui/colors.dart';
 import './screens/profile_screen.dart';
-import './screens/search_screen.dart';
 import './screens/cart_screen.dart';
 import './providers/product_provider.dart';
 import './screens/products_list_screen.dart';
@@ -67,7 +66,6 @@ class _MyAppState extends State<MyApp> {
           '/homescreen': (context) => const HomeScreen(),
           '/singleproductscreen': (context) => const SingleProductScreen(),
           '/profile-screen': (context) => const ProfileScreen(),
-          '/search-screen': (context) => const SearchScreen(),
           '/cart-screen': (context) => const CartScreen(),
           '/products-list-screen': (context) => const ProductsListScreen(),
         },

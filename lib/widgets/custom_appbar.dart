@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../ui/colors.dart';
 import '../screens/search_screen.dart';
 import '../screens/cart_screen.dart';
+import '../models/product_model.dart';
+import '../providers/product_provider.dart';
 
 class CustomAppBar extends StatefulWidget with PreferredSizeWidget {
   const CustomAppBar({required this.title, Key? key}) : super(key: key);
@@ -18,6 +21,9 @@ class CustomAppBar extends StatefulWidget with PreferredSizeWidget {
 class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
+    Provider.of<ProductProvider>(context).fetchAllItems();
+    List<ProductModel> allItems =
+        Provider.of<ProductProvider>(context).allItemsList;
     return AppBar(
       elevation: 0,
       iconTheme: const IconThemeData(color: Colors.black),
@@ -30,7 +36,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
       actions: [
         IconButton(
             onPressed: () {
-              Navigator.of(context).pushNamed(SearchScreen.routeName);
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: ((context) =>
+                      SearchScreen(allItemsList: allItems))));
             },
             icon: const Icon(Icons.search)),
         IconButton(
