@@ -13,6 +13,7 @@ import './screens/cart_screen.dart';
 import './providers/product_provider.dart';
 import './screens/products_list_screen.dart';
 import './providers/user_provider.dart';
+import './providers/cart_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -62,6 +63,9 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider<UserProvider>(
           create: ((context) => UserProvider()),
+        ),
+        ChangeNotifierProvider<CartProvider>(
+          create: ((context) => CartProvider()),
         )
       ],
       child: MaterialApp(
@@ -69,7 +73,7 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
             primaryColor: AppColor.primaryColor,
             primarySwatch: AppColor.primarySwatch),
-        home: const HomeScreen(),
+        home: const AuthScreen(),
         routes: {
           '/homescreen': (context) => const HomeScreen(),
           '/singleproductscreen': (context) => const SingleProductScreen(),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../ui/colors.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/custom_appbar.dart';
+import '../widgets/homescreen/quantity_selector.dart';
 
 class SingleProductScreen extends StatefulWidget {
   const SingleProductScreen({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class _SingleProductScreenState extends State<SingleProductScreen> {
   Widget build(BuildContext context) {
     final routeArgs =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
-  
+
     return Scaffold(
       backgroundColor: const Color(0xffcbcbcb),
       drawer: const AppDrawer(),
@@ -57,9 +58,7 @@ class _SingleProductScreenState extends State<SingleProductScreen> {
                   fontSize: 15,
                 ),
               ),
-              quantitySelector('500gm', routeArgs['price']),
               quantitySelector('1Kg', routeArgs['price']),
-              quantitySelector('2Kg', routeArgs['price']),
             ],
           ),
         ]),
@@ -68,6 +67,8 @@ class _SingleProductScreenState extends State<SingleProductScreen> {
   }
 
   Widget quantitySelector(String quan, int price) {
+    final routeArgs =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     String text;
     switch (quan) {
       case '500gm':
@@ -103,26 +104,10 @@ class _SingleProductScreenState extends State<SingleProductScreen> {
               ),
             ],
           ),
-          Container(
-            height: 40,
-            width: 80,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: Colors.grey),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  'Add to cart',
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: AppColor.primaryColor),
-                ),
-              ],
-            ),
-          ),
+          QuantitySelector(
+              productName: routeArgs['productName'],
+              imagePath: routeArgs['imagePath'],
+              price: routeArgs['price']),
         ],
       ),
     );

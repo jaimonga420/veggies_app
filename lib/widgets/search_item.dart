@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../ui/colors.dart';
+import '../widgets/homescreen/quantity_selector.dart';
 
 class SearchItem extends StatelessWidget {
   const SearchItem(
@@ -54,8 +55,8 @@ class SearchItem extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  height: 35,
-                  width: 95,
+                  height: 30,
+                  width: 85,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(color: Colors.grey),
@@ -64,16 +65,12 @@ class SearchItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: const [
                       Text(
-                        '50gm',
+                        '1Kg',
                         style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
                             color: Colors.black),
                       ),
-                      Icon(
-                        Icons.arrow_drop_down,
-                        color: Color(0xffd0b84c),
-                      )
                     ],
                   ),
                 ),
@@ -81,31 +78,10 @@ class SearchItem extends StatelessWidget {
             ),
           ),
         ),
-        Expanded(
-          child: Container(
-            height: 35,
-            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 32),
-            child: Container(
-              height: 17,
-              width: 35,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: Colors.grey),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text(
-                    'Add to cart',
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: AppColor.primaryColor),
-                  ),
-                ],
-              ),
-            ),
-          ),
+        QuantitySelector(
+          productName: productName,
+          imagePath: imagePath,
+          price: price,
         ),
       ]),
     );

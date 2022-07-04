@@ -82,23 +82,23 @@ class _VeggiesContainerState extends State<VeggiesContainer> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
                           Text(
-                            '500gm',
+                            '1Kg',
                             style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.black),
                           ),
-                          Icon(
-                            Icons.arrow_drop_down,
-                            color: Color(0xffd0b84c),
-                          )
+                          
                         ],
                       ),
                     ),
                     const SizedBox(
                       width: 10,
                     ),
-                    QuantitySelector(),
+                    QuantitySelector(
+                        productName: productName,
+                        imagePath: imagePath,
+                        price: price)
                   ],
                 )
               ],
