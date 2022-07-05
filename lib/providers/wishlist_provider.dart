@@ -58,8 +58,6 @@ class WishListProvider with ChangeNotifier {
     notifyListeners();
   }
 
- 
-
   List<CartModel> get getWishListItems {
     return wishlistItems;
   }

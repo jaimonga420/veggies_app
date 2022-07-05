@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/app_drawer.dart';
 import '../models/product_model.dart';
 import '../widgets/search_item.dart';
 import '../ui/colors.dart';

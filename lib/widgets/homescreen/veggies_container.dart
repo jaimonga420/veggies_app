@@ -4,7 +4,7 @@ import './quantity_selector.dart';
 import '../../screens/single_product_screen.dart';
 
 class VeggiesContainer extends StatefulWidget {
-  VeggiesContainer(
+  const VeggiesContainer(
       {required this.productName,
       required this.imagePath,
       required this.price,

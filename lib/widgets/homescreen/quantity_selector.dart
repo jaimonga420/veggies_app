@@ -5,19 +5,18 @@ import 'package:provider/provider.dart';
 
 import '../../ui/colors.dart';
 import '../../providers/cart_provider.dart';
-import '../../models/cart_model.dart';
 
 class QuantitySelector extends StatefulWidget {
-  QuantitySelector(
+  const QuantitySelector(
       {required this.productName,
       required this.imagePath,
       required this.price,
       Key? key})
       : super(key: key);
 
-  String productName;
-  String imagePath;
-  int price;
+  final String productName;
+  final String imagePath;
+  final int price;
 
   @override
   State<QuantitySelector> createState() => _QuantitySelectorState();
@@ -133,7 +132,7 @@ class _QuantitySelectorState extends State<QuantitySelector> {
                       debugPrint(isAdded.toString());
                     });
                   },
-                  child: Text('Add')),
+                  child: const Text('Add')),
             ),
     );
   }

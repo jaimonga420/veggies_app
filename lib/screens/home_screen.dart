@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import '../helpers/auth.dart';
 import '../widgets/homescreen/veggies_container.dart';
 import '../widgets/homescreen/home_banner.dart';
-import '../widgets/app_drawer.dart';
+import '../widgets/homescreen/app_drawer.dart';
 import '../widgets/custom_appbar.dart';
 import '../providers/product_provider.dart';
 import './products_list_screen.dart';

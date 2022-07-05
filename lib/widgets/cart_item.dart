@@ -5,7 +5,7 @@ import '../widgets/homescreen/quantity_selector.dart';
 import '../providers/cart_provider.dart';
 
 class CartItem extends StatelessWidget {
-  CartItem(
+  const CartItem(
       {required this.imagePath,
       required this.price,
       required this.productName,
@@ -14,11 +14,11 @@ class CartItem extends StatelessWidget {
       Key? key})
       : super(key: key);
 
-  String productName;
-  String imagePath;
-  int price;
-  int quantity;
-  int totalPrice;
+  final String productName;
+  final String imagePath;
+  final int price;
+  final int quantity;
+  final int totalPrice;
   @override
   Widget build(BuildContext context) {
     CartProvider cartProvider = Provider.of<CartProvider>(context);

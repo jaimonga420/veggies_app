@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../widgets/app_drawer.dart';
+import '../providers/user_provider.dart';
 import '../widgets/custom_appbar.dart';
 import '../ui/colors.dart';
 
@@ -11,6 +12,8 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UserProvider userProvider = Provider.of<UserProvider>(context);
+    userProvider.getUserData();
     return Scaffold(
       backgroundColor: AppColor.primaryColor,
       appBar: const CustomAppBar(title: 'My Profile'),
@@ -37,15 +40,15 @@ class ProfileScreen extends StatelessWidget {
                       children: [
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children: [
                             Text(
-                              'Jai Monga',
-                              style: TextStyle(
+                              userProvider.currentUserData!.userName,
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold),
                             ),
-                            Text('jaimonga420@gmail.com')
+                            Text(userProvider.getCurrentUserData!.userEmail)
                           ],
                         )
                       ],
@@ -72,14 +75,15 @@ class ProfileScreen extends StatelessWidget {
             )
           ],
         ),
-        const Padding(
-          padding: EdgeInsets.only(top: 30, left: 40),
+        Padding(
+          padding: const EdgeInsets.only(top: 30, left: 40),
           child: CircleAvatar(
             radius: 50,
             backgroundColor: AppColor.primaryColor,
             child: CircleAvatar(
               radius: 45,
-              backgroundImage: AssetImage('assets/images/vegi.png'),
+              backgroundImage:
+                  NetworkImage(userProvider.getCurrentUserData!.userImage),
               backgroundColor: AppColor.scaffoldColor,
             ),
           ),

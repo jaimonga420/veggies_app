@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../ui/colors.dart';
-import '../widgets/app_drawer.dart';
 import '../widgets/custom_appbar.dart';
 import '../widgets/homescreen/quantity_selector.dart';
 import '../providers/wishlist_provider.dart';

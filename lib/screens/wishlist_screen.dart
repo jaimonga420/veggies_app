@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/custom_appbar.dart';
-import '../widgets/app_drawer.dart';
 import '../providers/wishlist_provider.dart';
 import '../models/cart_model.dart';
 import '../widgets/wishlist_item.dart';

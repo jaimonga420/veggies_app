@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../screens/profile_screen.dart';
-import '../screens/home_screen.dart';
-import '../screens/cart_screen.dart';
-import '../screens/wishlist_screen.dart';
+import '../../screens/profile_screen.dart';
+import '../../screens/home_screen.dart';
+import '../../screens/cart_screen.dart';
+import '../../screens/wishlist_screen.dart';
+import '../../providers/user_provider.dart';
 
-class AppDrawer extends StatelessWidget {
+class AppDrawer extends StatefulWidget {
   const AppDrawer({Key? key}) : super(key: key);
 
   @override
+  State<AppDrawer> createState() => _AppDrawerState();
+}
+
+class _AppDrawerState extends State<AppDrawer> {
+  @override
   Widget build(BuildContext context) {
+    UserProvider userProvider = Provider.of<UserProvider>(context);
+    userProvider.getUserData();
     return Drawer(
       backgroundColor: const Color(0xffd6b738),
       child: ListView(
@@ -17,12 +26,13 @@ class AppDrawer extends StatelessWidget {
           DrawerHeader(
             child: Row(
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   backgroundColor: Colors.white,
                   radius: 42,
                   child: CircleAvatar(
                     radius: 40,
-                    backgroundImage: AssetImage('assets/images/vegi.png'),
+                    backgroundImage: NetworkImage(
+                        userProvider.getCurrentUserData!.userImage),
                   ),
                 ),
                 const SizedBox(
@@ -33,29 +43,17 @@ class AppDrawer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'Welcome Guest',
+                      'Welcome',
                       style: TextStyle(fontSize: 15),
                     ),
                     const SizedBox(
                       height: 5,
                     ),
-                    Container(
-                      height: 25,
-                      width: 70,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        border: Border.all(color: Colors.black),
+                    if (userProvider.getCurrentUserData!.userName.isNotEmpty)
+                      Text(
+                        userProvider.getCurrentUserData!.userName,
+                        style: const TextStyle(fontSize: 15),
                       ),
-                      child: const Center(
-                        child: Text(
-                          'LOGIN',
-                          style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black),
-                        ),
-                      ),
-                    ),
                   ],
                 )
               ],
@@ -67,7 +65,7 @@ class AppDrawer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 drawerItem(Icons.home_outlined, 'Home', () {
-                  Navigator.popAndPushNamed(context, HomeScreen.routeName);
+                  Navigator.pushReplacementNamed(context, HomeScreen.routeName);
                 }),
                 drawerItem(Icons.shopping_bag_outlined, 'Cart', () {
                   Navigator.popAndPushNamed(context, CartScreen.routeName);

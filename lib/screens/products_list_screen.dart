@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../ui/colors.dart';
 import '../widgets/custom_appbar.dart';
-import '../widgets/app_drawer.dart';
 import '../widgets/search_item.dart';
 
 class ProductsListScreen extends StatefulWidget {

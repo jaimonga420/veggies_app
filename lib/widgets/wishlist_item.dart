@@ -66,7 +66,7 @@ class _WishlistItemState extends State<WishlistItem> {
                         wishListProvider.deleteWishData(widget.productName);
                       },
                       icon: const Icon(Icons.delete),
-                      constraints: BoxConstraints(),
+                      constraints: const BoxConstraints(),
                       padding: EdgeInsets.zero,
                     ),
                     Container(

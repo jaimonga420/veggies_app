@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../ui/colors.dart';
 import '../widgets/homescreen/quantity_selector.dart';
 
 class SearchItem extends StatelessWidget {
