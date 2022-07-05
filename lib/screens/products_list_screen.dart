@@ -22,7 +22,6 @@ class _ProductsListScreenState extends State<ProductsListScreen> {
     return Scaffold(
         backgroundColor: AppColor.scaffoldColor,
         appBar: const CustomAppBar(title: 'Veggies List'),
-        drawer: const AppDrawer(),
         body: Padding(
           padding: const EdgeInsets.only(right: 20),
           child: Column(

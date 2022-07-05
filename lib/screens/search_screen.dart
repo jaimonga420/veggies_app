@@ -48,7 +48,6 @@ class _SearchScreenState extends State<SearchScreen> {
               icon: const Icon(Icons.shopping_bag))
         ],
       ),
-      drawer: const AppDrawer(),
       body: Column(
         children: [
           Container(

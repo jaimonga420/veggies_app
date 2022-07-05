@@ -70,16 +70,16 @@ class AppDrawer extends StatelessWidget {
                   Navigator.popAndPushNamed(context, HomeScreen.routeName);
                 }),
                 drawerItem(Icons.shopping_bag_outlined, 'Cart', () {
-                  Navigator.of(context).pushNamed(CartScreen.routeName);
+                  Navigator.popAndPushNamed(context, CartScreen.routeName);
                 }),
                 drawerItem(Icons.account_circle_outlined, 'My Profile', () {
-                  Navigator.pushNamed(context, ProfileScreen.routeName);
+                  Navigator.popAndPushNamed(context, ProfileScreen.routeName);
                 }),
                 drawerItem(
                     Icons.notifications_outlined, 'Notifications', () {}),
                 drawerItem(Icons.star_outline, 'Ratings & Reviews', () {}),
                 drawerItem(Icons.shopping_basket_outlined, 'Wishlist', () {
-                  Navigator.pushNamed(context, WishlistScreen.routeName);
+                  Navigator.popAndPushNamed(context, WishlistScreen.routeName);
                 }),
                 drawerItem(
                     Icons.headphones_outlined, 'Raise A Complain', () {}),

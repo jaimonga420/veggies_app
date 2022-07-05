@@ -48,11 +48,11 @@ class AuthScreen extends StatelessWidget {
                   ),
                   signInButton('assets/images/google.svg',
                       'Sign in with Google', true, context),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    child: signInButton('assets/images/mail.svg',
-                        'Sign in with Email', false, context),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(vertical: 5),
+                  //   child: signInButton('assets/images/mail.svg',
+                  //       'Sign in with Email', false, context),
+                  // ),
                 ],
               ),
             )

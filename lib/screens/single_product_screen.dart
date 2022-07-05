@@ -45,7 +45,6 @@ class _SingleProductScreenState extends State<SingleProductScreen> {
     getAddedToWishlist();
     return Scaffold(
       backgroundColor: const Color(0xffcbcbcb),
-      drawer: const AppDrawer(),
       appBar: const CustomAppBar(title: 'Veggies App'),
       bottomNavigationBar: Container(
         color: AppColor.primaryColor,
@@ -89,13 +88,6 @@ class _SingleProductScreenState extends State<SingleProductScreen> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const Icon(Icons.arrow_back),
-                iconSize: 30,
-              ),
               SizedBox(
                   height: 200,
                   width: 500,

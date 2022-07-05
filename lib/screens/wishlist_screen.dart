@@ -26,7 +26,6 @@ class _WishlistScreenState extends State<WishlistScreen> {
     return Scaffold(
         backgroundColor: AppColor.scaffoldColor,
         appBar: const CustomAppBar(title: 'Your Wishlist'),
-        drawer: const AppDrawer(),
         body: ListView.builder(
             itemCount: wishList.length,
             itemBuilder: (context, index) {

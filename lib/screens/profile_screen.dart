@@ -14,7 +14,6 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColor.primaryColor,
       appBar: const CustomAppBar(title: 'My Profile'),
-      drawer: const AppDrawer(),
       body: Stack(children: [
         Column(
           children: [
