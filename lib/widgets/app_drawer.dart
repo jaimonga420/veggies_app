@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../screens/profile_screen.dart';
 import '../screens/home_screen.dart';
 import '../screens/cart_screen.dart';
+import '../screens/wishlist_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({Key? key}) : super(key: key);
@@ -77,7 +78,9 @@ class AppDrawer extends StatelessWidget {
                 drawerItem(
                     Icons.notifications_outlined, 'Notifications', () {}),
                 drawerItem(Icons.star_outline, 'Ratings & Reviews', () {}),
-                drawerItem(Icons.shopping_basket_outlined, 'Wishlist', () {}),
+                drawerItem(Icons.shopping_basket_outlined, 'Wishlist', () {
+                  Navigator.pushNamed(context, WishlistScreen.routeName);
+                }),
                 drawerItem(
                     Icons.headphones_outlined, 'Raise A Complain', () {}),
                 drawerItem(Icons.message_outlined, 'FAQs', () {}),

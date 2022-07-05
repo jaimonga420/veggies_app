@@ -13,7 +13,7 @@ class CartProvider with ChangeNotifier {
     required price,
     required quantity,
     required totalPrice,
-  }) async {
+  }) {
     FirebaseFirestore.instance
         .collection('carts')
         .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -27,6 +27,7 @@ class CartProvider with ChangeNotifier {
       'totalprice': totalPrice,
       'isAdded': true,
     });
+    notifyListeners();
   }
 
   void getCartItems() async {
@@ -52,7 +53,7 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void deleteCartItem(String productName) async {
+  void deleteCartItem(String productName) {
     FirebaseFirestore.instance
         .collection('carts')
         .doc(FirebaseAuth.instance.currentUser!.uid)

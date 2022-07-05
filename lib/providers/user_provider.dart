@@ -13,5 +13,6 @@ class UserProvider with ChangeNotifier {
       'userimage': currentUser.photoURL,
       'userid': currentUser.uid,
     });
+    notifyListeners();
   }
 }

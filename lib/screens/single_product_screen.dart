@@ -1,29 +1,88 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../ui/colors.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/custom_appbar.dart';
 import '../widgets/homescreen/quantity_selector.dart';
+import '../providers/wishlist_provider.dart';
 
 class SingleProductScreen extends StatefulWidget {
   const SingleProductScreen({Key? key}) : super(key: key);
 
   static const routeName = '/singleproductscreen';
-
   @override
   State<SingleProductScreen> createState() => _SingleProductScreenState();
 }
 
 class _SingleProductScreenState extends State<SingleProductScreen> {
+  WishListProvider wishListProvider = WishListProvider();
+  bool addedToWishlist = false;
+
   @override
   Widget build(BuildContext context) {
     final routeArgs =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    getAddedToWishlist() async {
+      FirebaseFirestore.instance
+          .collection('wishlists')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection('userwishlist')
+          .doc(routeArgs['productName'])
+          .get()
+          .then((value) => {
+                if (mounted)
+                  {
+                    setState(() {
+                      addedToWishlist = value.get('isAdded');
+                    })
+                  }
+              });
+    }
 
+    getAddedToWishlist();
     return Scaffold(
       backgroundColor: const Color(0xffcbcbcb),
       drawer: const AppDrawer(),
       appBar: const CustomAppBar(title: 'Veggies App'),
+      bottomNavigationBar: Container(
+        color: AppColor.primaryColor,
+        height: 55,
+        child: TextButton.icon(
+            onPressed: () {
+              setState(() {
+                addedToWishlist = !addedToWishlist;
+              });
+              if (addedToWishlist) {
+                wishListProvider.addWishData(
+                    productName: routeArgs['productName'],
+                    imagePath: routeArgs['imagePath'],
+                    price: routeArgs['price']);
+              } else if (addedToWishlist == false) {
+                wishListProvider.deleteWishData(routeArgs['productName']);
+              }
+            },
+            icon: addedToWishlist
+                ? const Icon(
+                    Icons.favorite,
+                    color: Colors.white,
+                  )
+                : const Icon(
+                    Icons.favorite_outline,
+                    color: Colors.white,
+                  ),
+            label: addedToWishlist
+                ? const Text(
+                    'Added To Wishlist',
+                    style: TextStyle(color: Colors.white),
+                  )
+                : const Text(
+                    'Add To Wishlist',
+                    style: TextStyle(color: Colors.white),
+                  )),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: ListView(children: [

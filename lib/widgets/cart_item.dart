@@ -22,7 +22,6 @@ class CartItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
-
     return Column(
       children: [
         Row(

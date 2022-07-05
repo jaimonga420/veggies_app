@@ -47,7 +47,7 @@ class ProductProvider with ChangeNotifier {
 
   fetchAllItems() {
     allItems = List.from(vegetableslist)..addAll(fruitslist);
-    allItems;
+    return allItems;
   }
 
   List<ProductModel> get vegetableslist {

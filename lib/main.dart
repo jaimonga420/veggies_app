@@ -14,6 +14,8 @@ import './providers/product_provider.dart';
 import './screens/products_list_screen.dart';
 import './providers/user_provider.dart';
 import './providers/cart_provider.dart';
+import './providers/wishlist_provider.dart';
+import './screens/wishlist_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -66,6 +68,9 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider<CartProvider>(
           create: ((context) => CartProvider()),
+        ),
+        ChangeNotifierProvider<WishListProvider>(
+          create: ((context) => WishListProvider()),
         )
       ],
       child: MaterialApp(
@@ -80,6 +85,7 @@ class _MyAppState extends State<MyApp> {
           '/profile-screen': (context) => const ProfileScreen(),
           '/cart-screen': (context) => const CartScreen(),
           '/products-list-screen': (context) => const ProductsListScreen(),
+          '/wishlist-screen': (context) => const WishlistScreen(),
         },
       ),
     );
