@@ -6,6 +6,7 @@ import '../screens/search_screen.dart';
 import '../widgets/cart_item.dart';
 import '../providers/cart_provider.dart';
 import '../models/cart_model.dart';
+import '../screens/address_screen.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
     cartProvider.getCartItems();
+    cartProvider.setTotalCartValue();
     List<CartModel> cartItemsList = cartProvider.getcartItemsList();
     return Scaffold(
       backgroundColor: AppColor.scaffoldColor,
@@ -48,15 +50,24 @@ class CartScreen extends StatelessWidget {
           })),
       bottomNavigationBar: ListTile(
         title: const Text('Total Amount'),
-        subtitle: const Text(
-          '₹100',
-          style: TextStyle(color: AppColor.primaryColor),
+        subtitle: Text(
+          '₹${cartProvider.getTotalCartValue}',
+          style: const TextStyle(
+              color: AppColor.primaryColor, fontWeight: FontWeight.w600),
         ),
         trailing: SizedBox(
           width: 160,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: cartItemsList.isEmpty
+                ? null
+                : () {
+                    Navigator.of(context).pushNamed(AddressScreen.routeName);
+                  },
             style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                    (states) => cartItemsList.isEmpty
+                        ? Colors.grey
+                        : AppColor.primaryColor),
                 shape: MaterialStateProperty.resolveWith((states) =>
                     RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25)))),

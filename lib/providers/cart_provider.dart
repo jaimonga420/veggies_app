@@ -6,6 +6,7 @@ import '../models/cart_model.dart';
 
 class CartProvider with ChangeNotifier {
   List<CartModel> cartItemsList = [];
+  double totalCartValue = 0.0;
 
   void addCartData({
     required productName,
@@ -53,6 +54,14 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void setTotalCartValue() {
+    double totalValue = 0.0;
+    for (var item in cartItemsList) {
+      totalValue += item.totalPrice;
+    }
+    totalCartValue = totalValue;
+  }
+
   void deleteCartItem(String productName) {
     FirebaseFirestore.instance
         .collection('carts')
@@ -65,5 +74,9 @@ class CartProvider with ChangeNotifier {
 
   List<CartModel> getcartItemsList() {
     return cartItemsList;
+  }
+
+  double get getTotalCartValue {
+    return totalCartValue;
   }
 }
