@@ -8,6 +8,7 @@ class AddressItem extends StatelessWidget {
       required this.address,
       required this.addressType,
       required this.phoneNumber,
+      required this.isFromOrderScreen,
       Key? key})
       : super(key: key);
 
@@ -15,6 +16,7 @@ class AddressItem extends StatelessWidget {
   final String address;
   final int phoneNumber;
   final String addressType;
+  final bool isFromOrderScreen;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -22,11 +24,13 @@ class AddressItem extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           child: ListTile(
-            leading: const Radio(
-              value: false,
-              onChanged: null,
-              groupValue: null,
-            ),
+            leading: isFromOrderScreen
+                ? null
+                : const Radio(
+                    value: false,
+                    onChanged: null,
+                    groupValue: null,
+                  ),
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -34,20 +38,22 @@ class AddressItem extends StatelessWidget {
                   title,
                   style: const TextStyle(fontWeight: FontWeight.w600),
                 ),
-                Container(
-                  padding: const EdgeInsets.all(1),
-                  width: 60,
-                  height: 20,
-                  decoration: BoxDecoration(
-                      color: AppColor.primaryColor,
-                      borderRadius: BorderRadius.circular(25)),
-                  child: Center(
-                    child: Text(
-                      addressType,
-                      style: const TextStyle(color: Colors.white, fontSize: 13),
+                if (isFromOrderScreen == false)
+                  Container(
+                    padding: const EdgeInsets.all(1),
+                    width: 60,
+                    height: 20,
+                    decoration: BoxDecoration(
+                        color: AppColor.primaryColor,
+                        borderRadius: BorderRadius.circular(25)),
+                    child: Center(
+                      child: Text(
+                        addressType,
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 13),
+                      ),
                     ),
                   ),
-                ),
               ],
             ),
             subtitle: Column(

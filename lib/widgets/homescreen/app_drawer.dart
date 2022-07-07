@@ -32,7 +32,7 @@ class _AppDrawerState extends State<AppDrawer> {
                   child: CircleAvatar(
                     radius: 40,
                     backgroundImage: NetworkImage(
-                        userProvider.getCurrentUserData!.userImage),
+                        userProvider.getCurrentUserData!.userImage) 
                   ),
                 ),
                 const SizedBox(
