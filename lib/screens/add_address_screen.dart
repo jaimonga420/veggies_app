@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../ui/colors.dart';
 import '../widgets/custom_textformfield.dart';
+import '../providers/checkout_provider.dart';
 
 class AddAddressScreen extends StatefulWidget {
   const AddAddressScreen({Key? key}) : super(key: key);
@@ -12,10 +14,10 @@ class AddAddressScreen extends StatefulWidget {
   State<AddAddressScreen> createState() => _AddAddressScreenState();
 }
 
-enum Addresstypes { home, work }
+enum Addresstypes { Home, Work }
 
 class _AddAddressScreenState extends State<AddAddressScreen> {
-  var myAddressType = Addresstypes.home;
+  var myAddressType = Addresstypes.Home;
   @override
   Widget build(BuildContext context) {
     TextEditingController nameController = TextEditingController();
@@ -24,6 +26,8 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
     TextEditingController areaController = TextEditingController();
     TextEditingController cityController = TextEditingController();
     TextEditingController pincodeController = TextEditingController();
+    CheckoutProvider checkoutProvider =
+        Provider.of<CheckoutProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: AppColor.scaffoldColor,
       appBar: AppBar(
@@ -39,10 +43,20 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            checkoutProvider.addAddressData(
+                nameController.text,
+                int.parse(phoneController.text),
+                streetController.text,
+                areaController.text,
+                cityController.text,
+                int.parse(pincodeController.text),
+                myAddressType.name,
+                context);
+          },
           style: ButtonStyle(
               fixedSize: MaterialStateProperty.resolveWith<Size>(
-                  (states) => Size(double.maxFinite, 40))),
+                  (states) => const Size(double.maxFinite, 40))),
           child: const Text('Add Address'),
         ),
       ),
@@ -54,44 +68,39 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
               label: 'Name',
               keyboardType: TextInputType.name,
               textEditingController: nameController,
-              hintText: 'Jai Monga',
             ),
             CustomTextFormField(
               label: 'Mobile Number',
               keyboardType: TextInputType.phone,
               textEditingController: phoneController,
-              hintText: 'Ex. 7896856870',
+              maxLength: 10,
             ),
             CustomTextFormField(
               label: 'H No./Street',
               keyboardType: TextInputType.streetAddress,
               textEditingController: streetController,
-              hintText: '',
             ),
             CustomTextFormField(
               label: 'Area',
               keyboardType: TextInputType.streetAddress,
               textEditingController: areaController,
-              hintText: '',
             ),
             CustomTextFormField(
               label: 'City',
               keyboardType: TextInputType.text,
               textEditingController: cityController,
-              hintText: '',
             ),
             CustomTextFormField(
               label: 'Pincode',
               keyboardType: TextInputType.number,
               textEditingController: pincodeController,
-              hintText: '',
               maxLength: 6,
             ),
             const ListTile(
               title: Text('Address Type'),
             ),
             RadioListTile(
-              value: Addresstypes.home,
+              value: Addresstypes.Home,
               groupValue: myAddressType,
               onChanged: (value) {
                 setState(() {
@@ -101,7 +110,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
               title: const Text('Home'),
             ),
             RadioListTile(
-              value: Addresstypes.work,
+              value: Addresstypes.Work,
               groupValue: myAddressType,
               onChanged: (value) {
                 setState(() {

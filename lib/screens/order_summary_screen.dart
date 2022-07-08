@@ -7,6 +7,7 @@ import '../providers/cart_provider.dart';
 import '../widgets/address_item.dart';
 import '../widgets/order_item.dart';
 
+
 class OrderSummaryScreen extends StatefulWidget {
   const OrderSummaryScreen({Key? key}) : super(key: key);
 
@@ -64,13 +65,13 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
         ),
         body: ListView(
           children: [
-            const AddressItem(
-              title: 'Jai Monga',
-              address: 'Street No.14, Preet Nagar, Begu Road, Sirsa - 125055',
-              addressType: 'Home',
-              phoneNumber: 7015896339,
-              isFromOrderScreen: true,
-            ),
+            // const AddressItem(
+            //   title: 'Jai Monga',
+            //   address: 'Street No.14, Preet Nagar, Begu Road, Sirsa - 125055',
+            //   addressType: 'Home',
+            //   phoneNumber: 7015896339,
+            //   isFromOrderScreen: true,
+            // ),
             const Divider(
               height: 1,
             ),

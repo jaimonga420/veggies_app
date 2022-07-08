@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../ui/colors.dart';
-import '../widgets/custom_appbar.dart';
+import '../providers/checkout_provider.dart';
 import '../widgets/address_item.dart';
 import './add_address_screen.dart';
 import './order_summary_screen.dart';
+import '../models/address_model.dart';
 
 class AddressScreen extends StatelessWidget {
   const AddressScreen({Key? key}) : super(key: key);
@@ -13,6 +15,9 @@ class AddressScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CheckoutProvider checkoutProvider = Provider.of(context);
+    checkoutProvider.getAddressItems();
+    List<AddressModel> addressItemsList = checkoutProvider.addressListGetter;
     return Scaffold(
       backgroundColor: AppColor.scaffoldColor,
       appBar: AppBar(
@@ -29,7 +34,7 @@ class AddressScreen extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pushNamed(AddAddressScreen.routeName);
           },
-          child: Icon(Icons.add)),
+          child: addressItemsList.isEmpty ? Icon(Icons.add) : Icon(Icons.edit)),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         child: ElevatedButton(
@@ -42,7 +47,7 @@ class AddressScreen extends StatelessWidget {
           child: const Text('Proceed To Checkout'),
         ),
       ),
-      body: ListView(
+      body: Column(
         children: [
           ListTile(
             title: const Text('Deliver To'),
@@ -51,17 +56,24 @@ class AddressScreen extends StatelessWidget {
           const Divider(
             height: 1,
           ),
-          Column(
-            children: [
-              AddressItem(
-                title: 'Jai Monga',
-                address: 'Street No.14, Preet Nagar, Begu Road, Sirsa - 125055',
-                addressType: 'Home',
-                phoneNumber: 7015896339,
-                isFromOrderScreen: false,
-              )
-            ],
-          )
+          addressItemsList.isEmpty
+              ? Center(
+                  child: Text('Please add a delivery address.'),
+                )
+              : ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: addressItemsList.length,
+                  itemBuilder: (context, index) {
+                    return AddressItem(
+                        name: addressItemsList[index].name,
+                        street: addressItemsList[index].street,
+                        area: addressItemsList[index].area,
+                        city: addressItemsList[index].city,
+                        pincode: addressItemsList[index].pincode,
+                        addressType: addressItemsList[index].addressType,
+                        phone: addressItemsList[index].phone,
+                        isFromOrderScreen: false);
+                  })
         ],
       ),
     );

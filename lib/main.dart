@@ -20,6 +20,7 @@ import './screens/checkout_screen.dart';
 import './screens/address_screen.dart';
 import './screens/add_address_screen.dart';
 import './screens/order_summary_screen.dart';
+import './providers/checkout_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -75,7 +76,10 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider<WishListProvider>(
           create: ((context) => WishListProvider()),
-        )
+        ),
+        ChangeNotifierProvider<CheckoutProvider>(
+          create: ((context) => CheckoutProvider()),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -91,9 +95,9 @@ class _MyAppState extends State<MyApp> {
           '/products-list-screen': (context) => const ProductsListScreen(),
           '/wishlist-screen': (context) => const WishlistScreen(),
           '/checkout-screen': (context) => const CheckoutScreen(),
-          '/address-screen' :(context) => const AddressScreen(),
-          '/add-address-screen' :(context) => const AddAddressScreen(),
-          '/order-summary-screen' :(context) => const OrderSummaryScreen(),
+          '/address-screen': (context) => const AddressScreen(),
+          '/add-address-screen': (context) => const AddAddressScreen(),
+          '/order-summary-screen': (context) => const OrderSummaryScreen(),
         },
       ),
     );

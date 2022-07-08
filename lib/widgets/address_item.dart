@@ -4,17 +4,23 @@ import '../ui/colors.dart';
 
 class AddressItem extends StatelessWidget {
   const AddressItem(
-      {required this.title,
-      required this.address,
+      {required this.name,
+      required this.street,
+      required this.area,
+      required this.city,
+      required this.pincode,
       required this.addressType,
-      required this.phoneNumber,
+      required this.phone,
       required this.isFromOrderScreen,
       Key? key})
       : super(key: key);
 
-  final String title;
-  final String address;
-  final int phoneNumber;
+  final String name;
+  final String street;
+  final String area;
+  final String city;
+  final int pincode;
+  final int phone;
   final String addressType;
   final bool isFromOrderScreen;
   @override
@@ -24,18 +30,18 @@ class AddressItem extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           child: ListTile(
-            leading: isFromOrderScreen
-                ? null
-                : const Radio(
-                    value: false,
-                    onChanged: null,
-                    groupValue: null,
-                  ),
+            // leading: isFromOrderScreen
+            //     ? null
+            //     : const Radio(
+            //         value: false,
+            //         onChanged: null,
+            //         groupValue: null,
+            //       ),
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  title,
+                  name,
                   style: const TextStyle(fontWeight: FontWeight.w600),
                 ),
                 if (isFromOrderScreen == false)
@@ -60,11 +66,14 @@ class AddressItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(address),
+                Text(street),
+                Text(area),
+                Text(city),
+                Text(pincode.toString()),
                 const SizedBox(
                   height: 3,
                 ),
-                Text(phoneNumber.toString())
+                Text(phone.toString())
               ],
             ),
           ),
