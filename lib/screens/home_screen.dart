@@ -52,7 +52,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       imagePath:
                           productProvider.vegetableslist[index].imagePath,
                       price: productProvider.vegetableslist[index].price,
-                      
                     );
                   }),
             ),
@@ -74,7 +73,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           productProvider.fruitslist[index].productName,
                       imagePath: productProvider.fruitslist[index].imagePath,
                       price: productProvider.fruitslist[index].price,
-                      
                     );
                   }),
             ),

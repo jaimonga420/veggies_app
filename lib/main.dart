@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:veggies_app/screens/home_screen.dart';
+import 'package:veggies_app/screens/search_screen.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 
@@ -16,11 +17,11 @@ import './providers/user_provider.dart';
 import './providers/cart_provider.dart';
 import './providers/wishlist_provider.dart';
 import './screens/wishlist_screen.dart';
-import './screens/checkout_screen.dart';
 import './screens/address_screen.dart';
 import './screens/add_address_screen.dart';
 import './screens/order_summary_screen.dart';
 import './providers/checkout_provider.dart';
+import './providers/order_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -80,6 +81,9 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider<CheckoutProvider>(
           create: ((context) => CheckoutProvider()),
         ),
+        ChangeNotifierProvider<OrderProvider>(
+          create: ((context) => OrderProvider()),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -94,7 +98,6 @@ class _MyAppState extends State<MyApp> {
           '/cart-screen': (context) => const CartScreen(),
           '/products-list-screen': (context) => const ProductsListScreen(),
           '/wishlist-screen': (context) => const WishlistScreen(),
-          '/checkout-screen': (context) => const CheckoutScreen(),
           '/address-screen': (context) => const AddressScreen(),
           '/add-address-screen': (context) => const AddAddressScreen(),
           '/order-summary-screen': (context) => const OrderSummaryScreen(),

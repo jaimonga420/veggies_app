@@ -31,13 +31,6 @@ class CartScreen extends StatelessWidget {
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed(SearchScreen.routeName);
-              },
-              icon: const Icon(Icons.search))
-        ],
       ),
       body: ListView.builder(
           itemCount: cartItemsList.length,

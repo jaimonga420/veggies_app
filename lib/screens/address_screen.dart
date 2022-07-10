@@ -34,12 +34,15 @@ class AddressScreen extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pushNamed(AddAddressScreen.routeName);
           },
-          child: addressItemsList.isEmpty ? Icon(Icons.add) : Icon(Icons.edit)),
+          child: addressItemsList.isEmpty
+              ? const Icon(Icons.add)
+              : const Icon(Icons.edit)),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         child: ElevatedButton(
           onPressed: () {
-            Navigator.of(context).pushNamed(OrderSummaryScreen.routeName);
+            Navigator.of(context).pushNamed(OrderSummaryScreen.routeName,
+                arguments: addressItemsList);
           },
           style: ButtonStyle(
               fixedSize: MaterialStateProperty.resolveWith<Size>(

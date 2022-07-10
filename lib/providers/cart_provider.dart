@@ -72,6 +72,17 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void deleteCart(productNames) {
+    for (var i in productNames) {
+      FirebaseFirestore.instance
+          .collection('carts')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection('usercart')
+          .doc(i)
+          .delete();
+    }
+  }
+
   List<CartModel> getcartItemsList() {
     return cartItemsList;
   }

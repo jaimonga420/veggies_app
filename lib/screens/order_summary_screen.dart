@@ -6,7 +6,8 @@ import '../models/cart_model.dart';
 import '../providers/cart_provider.dart';
 import '../widgets/address_item.dart';
 import '../widgets/order_item.dart';
-
+import '../providers/order_provider.dart';
+import '../screens/home_screen.dart';
 
 class OrderSummaryScreen extends StatefulWidget {
   const OrderSummaryScreen({Key? key}) : super(key: key);
@@ -24,7 +25,37 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
   @override
   Widget build(BuildContext context) {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
+    OrderProvider orderProvider = Provider.of<OrderProvider>(context);
+    orderProvider.getOrderItems();
     List<CartModel> cartItemsList = cartProvider.getcartItemsList();
+    List addressItemsList = ModalRoute.of(context)!.settings.arguments as List;
+
+    var productNamesList = {
+      for (var i in cartItemsList) i.productName,
+    };
+
+    var orderAddress = {
+      for (var i in addressItemsList)
+        {
+          'name': i.name,
+          'phone': i.phone,
+          'street': i.street,
+          'area': i.area,
+          'city': i.city,
+          'pincode': i.pincode,
+          'addressType': i.addressType,
+        }
+    }.toList();
+    var orderItems = {
+      for (var i in cartItemsList)
+        {
+          'productname': i.productName,
+          'price': i.price,
+          'imagepath': i.imagePath,
+          'quantity': i.quantity,
+          'totalprice': i.totalPrice
+        }
+    }.toList();
     return Scaffold(
         backgroundColor: AppColor.scaffoldColor,
         appBar: AppBar(
@@ -50,7 +81,12 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
                 color: AppColor.primaryColor),
           ),
           trailing: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              orderProvider.addOrderData(
+                  orderItems, orderAddress, 'processing');
+              cartProvider.deleteCart(productNamesList);
+              Navigator.of(context).pushNamed(HomeScreen.routeName);
+            },
             style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.resolveWith<Color>(
                     (states) => AppColor.primaryColor),
@@ -63,17 +99,24 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
             child: const Text('Place Order'),
           ),
         ),
-        body: ListView(
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // const AddressItem(
-            //   title: 'Jai Monga',
-            //   address: 'Street No.14, Preet Nagar, Begu Road, Sirsa - 125055',
-            //   addressType: 'Home',
-            //   phoneNumber: 7015896339,
-            //   isFromOrderScreen: true,
-            // ),
-            const Divider(
-              height: 1,
+            SizedBox(
+              height: 150,
+              child: ListView.builder(
+                  itemCount: addressItemsList.length,
+                  itemBuilder: ((context, index) {
+                    return AddressItem(
+                        name: addressItemsList[index].name,
+                        street: addressItemsList[index].street,
+                        area: addressItemsList[index].area,
+                        city: addressItemsList[index].city,
+                        pincode: addressItemsList[index].pincode,
+                        addressType: addressItemsList[index].addressType,
+                        phone: addressItemsList[index].phone,
+                        isFromOrderScreen: true);
+                  })),
             ),
             ExpansionTile(title: const Text('Products'), children: [
               ListView.builder(
@@ -91,7 +134,7 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
                   })
             ]),
             const Padding(
-              padding:  EdgeInsets.only(left: 20, top: 20),
+              padding: EdgeInsets.only(left: 20, top: 20),
               child: Text(
                 'Select Payment Method',
                 style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15),

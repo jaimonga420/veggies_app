@@ -36,7 +36,6 @@ dependencies:
   shared_preferences: ^2.0.15
   cloud_firestore: ^3.1.18
   provider: ^6.0.3
-  fluttertoast: ^8.0.9
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
