@@ -57,7 +57,7 @@ class Auth {
     try {
       final prefs = await SharedPreferences.getInstance();
       await signin.signOut();
-      fireAuth.signOut();
+      await fireAuth.signOut();
       await prefs.remove('token');
     } catch (e) {
       debugPrint(e.toString());

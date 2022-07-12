@@ -43,12 +43,9 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Auth auth = Auth();
   Widget currentPage = const AuthScreen();
-  String? token;
-  Future<void> getToken() async {
-    token = (await auth.getToken())!;
-  }
 
-  pageSetter() {
+  checkLogin() async {
+    String? token = await auth.getToken();
     if (token != null) {
       setState(() {
         currentPage = const HomeScreen();
@@ -59,8 +56,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    getToken();
-    pageSetter();
+    checkLogin();
   }
 
   // This widget is the root of your application.
@@ -92,7 +88,7 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
             primaryColor: AppColor.primaryColor,
             primarySwatch: AppColor.primarySwatch),
-        home: const AuthScreen(),
+        home: currentPage,
         routes: {
           '/homescreen': (context) => const HomeScreen(),
           '/singleproductscreen': (context) => const SingleProductScreen(),
@@ -105,7 +101,8 @@ class _MyAppState extends State<MyApp> {
           '/order-summary-screen': (context) => const OrderSummaryScreen(),
           '/my-orders-screen': (context) => const MyOrdersScreen(),
           '/single-order-screen': (context) => const SingleOrderScreen(),
-          '/terms-conditions-screen': (context) => const StaticScreen()
+          '/terms-conditions-screen': (context) => const StaticScreen(),
+          '/auth-screen': (context) => const AuthScreen()
         },
       ),
     );

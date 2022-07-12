@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../helpers/auth.dart';
 import '../../screens/profile_screen.dart';
 import '../../screens/home_screen.dart';
 import '../../screens/cart_screen.dart';
 import '../../screens/wishlist_screen.dart';
 import '../../providers/user_provider.dart';
 import '../../screens/static_screen.dart';
+import '../../screens/auth_screen.dart';
 
 class AppDrawer extends StatefulWidget {
   const AppDrawer({Key? key}) : super(key: key);
@@ -18,9 +20,9 @@ class AppDrawer extends StatefulWidget {
 class _AppDrawerState extends State<AppDrawer> {
   @override
   Widget build(BuildContext context) {
+    Auth auth = Auth();
     UserProvider userProvider = Provider.of<UserProvider>(context);
     userProvider.getUserData();
-
     return Drawer(
       backgroundColor: const Color(0xffd6b738),
       child: ListView(
@@ -80,6 +82,11 @@ class _AppDrawerState extends State<AppDrawer> {
                 drawerItem(Icons.message_outlined, 'FAQs', () {
                   Navigator.of(context)
                       .pushNamed(StaticScreen.routeName, arguments: 'FAQs');
+                }),
+                drawerItem(Icons.logout, 'Logout', () {
+                  auth.logout();
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      AuthScreen.routeName, (route) => false);
                 }),
                 const SizedBox(
                   height: 10,

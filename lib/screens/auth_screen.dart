@@ -6,6 +6,8 @@ import '../helpers/auth.dart';
 class AuthScreen extends StatelessWidget {
   const AuthScreen({Key? key}) : super(key: key);
 
+  static const routeName = '/auth-screen';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,11 +50,6 @@ class AuthScreen extends StatelessWidget {
                   ),
                   signInButton('assets/images/google.svg',
                       'Sign in with Google', true, context),
-                  // Padding(
-                  //   padding: const EdgeInsets.symmetric(vertical: 5),
-                  //   child: signInButton('assets/images/mail.svg',
-                  //       'Sign in with Email', false, context),
-                  // ),
                 ],
               ),
             )

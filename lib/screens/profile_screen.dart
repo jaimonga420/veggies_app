@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../helpers/auth.dart';
 import '../providers/user_provider.dart';
 import '../widgets/custom_appbar.dart';
 import '../ui/colors.dart';
 import '../screens/my_orders_screen.dart';
 import 'static_screen.dart';
+import '../screens/auth_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -16,6 +18,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     UserProvider userProvider = Provider.of<UserProvider>(context);
     userProvider.getUserData();
+    Auth auth = Auth();
     return Scaffold(
       backgroundColor: AppColor.primaryColor,
       appBar: const CustomAppBar(title: 'My Profile'),
@@ -78,7 +81,11 @@ class ProfileScreen extends StatelessWidget {
                               StaticScreen.routeName,
                               arguments: 'About');
                         }),
-                        singleItem(Icons.logout, 'Logout', () {}),
+                        singleItem(Icons.logout, 'Logout', () {
+                          auth.logout();
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                              AuthScreen.routeName, (route) => false);
+                        }),
                       ],
                     )
                   ],
