@@ -6,6 +6,7 @@ import '../../screens/home_screen.dart';
 import '../../screens/cart_screen.dart';
 import '../../screens/wishlist_screen.dart';
 import '../../providers/user_provider.dart';
+import '../../screens/static_screen.dart';
 
 class AppDrawer extends StatefulWidget {
   const AppDrawer({Key? key}) : super(key: key);
@@ -19,6 +20,7 @@ class _AppDrawerState extends State<AppDrawer> {
   Widget build(BuildContext context) {
     UserProvider userProvider = Provider.of<UserProvider>(context);
     userProvider.getUserData();
+
     return Drawer(
       backgroundColor: const Color(0xffd6b738),
       child: ListView(
@@ -30,10 +32,9 @@ class _AppDrawerState extends State<AppDrawer> {
                   backgroundColor: Colors.white,
                   radius: 42,
                   child: CircleAvatar(
-                    radius: 40,
-                    backgroundImage: NetworkImage(
-                        userProvider.getCurrentUserData!.userImage) 
-                  ),
+                      radius: 40,
+                      backgroundImage: NetworkImage(
+                          userProvider.getCurrentUserData.userImage)),
                 ),
                 const SizedBox(
                   width: 20,
@@ -49,9 +50,9 @@ class _AppDrawerState extends State<AppDrawer> {
                     const SizedBox(
                       height: 5,
                     ),
-                    if (userProvider.getCurrentUserData!.userName.isNotEmpty)
+                    if (userProvider.getCurrentUserData.userName.isNotEmpty)
                       Text(
-                        userProvider.getCurrentUserData!.userName,
+                        userProvider.getCurrentUserData.userName,
                         style: const TextStyle(fontSize: 15),
                       ),
                   ],
@@ -73,15 +74,13 @@ class _AppDrawerState extends State<AppDrawer> {
                 drawerItem(Icons.account_circle_outlined, 'My Profile', () {
                   Navigator.popAndPushNamed(context, ProfileScreen.routeName);
                 }),
-                drawerItem(
-                    Icons.notifications_outlined, 'Notifications', () {}),
-                drawerItem(Icons.star_outline, 'Ratings & Reviews', () {}),
                 drawerItem(Icons.shopping_basket_outlined, 'Wishlist', () {
                   Navigator.popAndPushNamed(context, WishlistScreen.routeName);
                 }),
-                drawerItem(
-                    Icons.headphones_outlined, 'Raise A Complain', () {}),
-                drawerItem(Icons.message_outlined, 'FAQs', () {}),
+                drawerItem(Icons.message_outlined, 'FAQs', () {
+                  Navigator.of(context)
+                      .pushNamed(StaticScreen.routeName, arguments: 'FAQs');
+                }),
                 const SizedBox(
                   height: 10,
                 ),

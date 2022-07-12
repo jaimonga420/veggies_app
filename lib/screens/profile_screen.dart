@@ -5,6 +5,7 @@ import '../providers/user_provider.dart';
 import '../widgets/custom_appbar.dart';
 import '../ui/colors.dart';
 import '../screens/my_orders_screen.dart';
+import 'static_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -43,13 +44,13 @@ class ProfileScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              userProvider.currentUserData!.userName,
+                              userProvider.currentUserData.userName,
                               style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold),
                             ),
-                            Text(userProvider.getCurrentUserData!.userEmail)
+                            Text(userProvider.getCurrentUserData.userEmail)
                           ],
                         )
                       ],
@@ -62,14 +63,21 @@ class ProfileScreen extends StatelessWidget {
                           Navigator.of(context)
                               .pushNamed(MyOrdersScreen.routeName);
                         }),
-                        singleItem(
-                            Icons.location_on_outlined, 'My Addresses', () {}),
-                        singleItem(Icons.person, 'Refer A Friend', () {}),
-                        singleItem(
-                            Icons.file_copy, 'Terms & Conditions', () {}),
-                        singleItem(
-                            Icons.policy_outlined, 'Privacy Policy', () {}),
-                        singleItem(Icons.add_chart_outlined, 'About', () {}),
+                        singleItem(Icons.file_copy, 'Terms & Conditions', () {
+                          Navigator.of(context).pushNamed(
+                              StaticScreen.routeName,
+                              arguments: 'Terms & Conditions');
+                        }),
+                        singleItem(Icons.policy_outlined, 'Privacy Policy', () {
+                          Navigator.of(context).pushNamed(
+                              StaticScreen.routeName,
+                              arguments: 'Privacy Policy');
+                        }),
+                        singleItem(Icons.add_chart_outlined, 'About', () {
+                          Navigator.of(context).pushNamed(
+                              StaticScreen.routeName,
+                              arguments: 'About');
+                        }),
                         singleItem(Icons.logout, 'Logout', () {}),
                       ],
                     )
@@ -87,7 +95,7 @@ class ProfileScreen extends StatelessWidget {
             child: CircleAvatar(
               radius: 45,
               backgroundImage:
-                  NetworkImage(userProvider.getCurrentUserData!.userImage),
+                  NetworkImage(userProvider.getCurrentUserData.userImage),
               backgroundColor: AppColor.scaffoldColor,
             ),
           ),

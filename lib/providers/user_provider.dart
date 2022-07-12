@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/user_model.dart';
 
 class UserProvider with ChangeNotifier {
-  UserModel? currentUserData;
+  late UserModel currentUserData;
 
   void addUserData(User? currentUser) async {
     await FirebaseFirestore.instance
@@ -22,7 +22,6 @@ class UserProvider with ChangeNotifier {
 
   getUserData() async {
     UserModel localUserData;
-
     DocumentSnapshot<Map<String, dynamic>> usersData = await FirebaseFirestore
         .instance
         .collection('usersdata')
@@ -34,12 +33,11 @@ class UserProvider with ChangeNotifier {
         userImage: usersData.get('userimage'),
         userEmail: usersData.get('useremail'),
         userId: usersData.get('userid'));
-
     currentUserData = localUserData;
     notifyListeners();
   }
 
-  UserModel? get getCurrentUserData {
+  UserModel get getCurrentUserData {
     return currentUserData;
   }
 }

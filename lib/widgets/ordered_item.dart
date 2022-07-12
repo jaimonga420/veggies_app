@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../models/order_model.dart';
+import '../screens/single_order_screen.dart';
 
 class OrderedItem extends StatefulWidget {
   const OrderedItem({required this.orderData, Key? key}) : super(key: key);
-
   final OrderModel orderData;
-
   @override
   State<OrderedItem> createState() => _OrderedItemState();
 }
@@ -45,7 +44,11 @@ class _OrderedItemState extends State<OrderedItem> {
           SizedBox(
             height: 83,
             child: IconButton(
-                onPressed: () {}, icon: const Icon(Icons.arrow_forward_ios)),
+                onPressed: () {
+                  Navigator.of(context).pushNamed(SingleOrderScreen.routeName,
+                      arguments: widget.orderData);
+                },
+                icon: const Icon(Icons.arrow_forward_ios)),
           )
         ],
       ),

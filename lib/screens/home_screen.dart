@@ -9,6 +9,7 @@ import '../widgets/homescreen/app_drawer.dart';
 import '../widgets/custom_appbar.dart';
 import '../providers/product_provider.dart';
 import './products_list_screen.dart';
+import '../providers/user_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -18,6 +19,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      UserProvider userProvider =
+          Provider.of<UserProvider>(context, listen: false);
+      userProvider.getUserData();
+    });
+  }
+
   final auth = Auth();
   @override
   Widget build(BuildContext context) {

@@ -22,6 +22,8 @@ import './screens/order_summary_screen.dart';
 import './providers/checkout_provider.dart';
 import './providers/order_provider.dart';
 import './screens/my_orders_screen.dart';
+import './screens/single_order_screen.dart';
+import 'screens/static_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -102,6 +104,8 @@ class _MyAppState extends State<MyApp> {
           '/add-address-screen': (context) => const AddAddressScreen(),
           '/order-summary-screen': (context) => const OrderSummaryScreen(),
           '/my-orders-screen': (context) => const MyOrdersScreen(),
+          '/single-order-screen': (context) => const SingleOrderScreen(),
+          '/terms-conditions-screen': (context) => const StaticScreen()
         },
       ),
     );

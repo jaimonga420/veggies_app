@@ -30,13 +30,6 @@ class AddressItem extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           child: ListTile(
-            // leading: isFromOrderScreen
-            //     ? null
-            //     : const Radio(
-            //         value: false,
-            //         onChanged: null,
-            //         groupValue: null,
-            //       ),
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
