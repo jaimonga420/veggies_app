@@ -29,7 +29,6 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
     orderProvider.getOrderItems();
     List<CartModel> cartItemsList = cartProvider.getcartItemsList();
     List addressItemsList = ModalRoute.of(context)!.settings.arguments as List;
-
     var productNamesList = {
       for (var i in cartItemsList) i.productName,
     };
@@ -82,8 +81,8 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
           ),
           trailing: ElevatedButton(
             onPressed: () {
-              orderProvider.addOrderData(
-                  orderItems, orderAddress, 'processing');
+              orderProvider.addOrderData(orderItems, orderAddress,
+                  'Order Placed', cartProvider.getTotalCartValue);
               cartProvider.deleteCart(productNamesList);
               Navigator.of(context).pushNamed(HomeScreen.routeName);
             },

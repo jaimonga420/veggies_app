@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../providers/user_provider.dart';
 import '../widgets/custom_appbar.dart';
 import '../ui/colors.dart';
+import '../screens/my_orders_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -56,8 +57,11 @@ class ProfileScreen extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        singleItem(
-                            Icons.shopping_basket_outlined, 'My Orders', () {}),
+                        singleItem(Icons.shopping_basket_outlined, 'My Orders',
+                            () {
+                          Navigator.of(context)
+                              .pushNamed(MyOrdersScreen.routeName);
+                        }),
                         singleItem(
                             Icons.location_on_outlined, 'My Addresses', () {}),
                         singleItem(Icons.person, 'Refer A Friend', () {}),

@@ -14,6 +14,7 @@ class AddAddressScreen extends StatefulWidget {
   State<AddAddressScreen> createState() => _AddAddressScreenState();
 }
 
+// ignore: constant_identifier_names
 enum Addresstypes { Home, Work }
 
 class _AddAddressScreenState extends State<AddAddressScreen> {

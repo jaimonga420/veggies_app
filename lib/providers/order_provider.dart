@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -5,21 +7,25 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../models/order_model.dart';
 
 class OrderProvider with ChangeNotifier {
-  late int orderNo;
-  List ordersList = [];
+  List<OrderModel> ordersList = [];
+  final _chars = '1234567890';
+  final Random _rnd = Random();
+  String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
+      length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
 
   void addOrderData(
     var orderItems,
     var orderAddress,
     String orderStatus,
+    double totalAmount,
   ) async {
     await FirebaseFirestore.instance
         .collection('orders')
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .collection('userorders')
-        .doc()
+        .doc(getRandomString(11))
         .set({
-      'orderno': orderNo,
+          'totalAmount' : totalAmount,
       'orderItems': orderItems,
       'orderAddress': orderAddress,
       'orderstatus': orderStatus,
@@ -28,8 +34,8 @@ class OrderProvider with ChangeNotifier {
   }
 
   void getOrderItems() async {
-    List localOrdersList = [];
-    QuerySnapshot? orderData = await FirebaseFirestore.instance
+    List<OrderModel> localOrdersList = [];
+    QuerySnapshot orderData = await FirebaseFirestore.instance
         .collection('orders')
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .collection('userorders')
@@ -37,17 +43,18 @@ class OrderProvider with ChangeNotifier {
 
     for (var item in orderData.docs) {
       OrderModel orderModel = OrderModel(
+          orderId: item.reference.id,
+          totalAmount: item.get('totalAmount'),
           orderAddress: item.get('orderAddress'),
           orderItems: item.get('orderItems'),
-          orderNo: item.get('orderno'),
           orderStatus: item.get('orderstatus'));
       localOrdersList.add(orderModel);
     }
-    if (localOrdersList.isEmpty) {
-      orderNo = 1;
-    } else {
-      orderNo = localOrdersList.length++;
-    }
+    ordersList = localOrdersList;
     notifyListeners();
+  }
+
+  List<OrderModel> get orderListGetter {
+    return ordersList;
   }
 }

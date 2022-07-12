@@ -46,7 +46,7 @@ class AddressScreen extends StatelessWidget {
           },
           style: ButtonStyle(
               fixedSize: MaterialStateProperty.resolveWith<Size>(
-                  (states) => Size(double.maxFinite, 40))),
+                  (states) => const Size(double.maxFinite, 40))),
           child: const Text('Proceed To Checkout'),
         ),
       ),
@@ -60,7 +60,7 @@ class AddressScreen extends StatelessWidget {
             height: 1,
           ),
           addressItemsList.isEmpty
-              ? Center(
+              ? const Center(
                   child: Text('Please add a delivery address.'),
                 )
               : ListView.builder(

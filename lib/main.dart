@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:veggies_app/screens/home_screen.dart';
-import 'package:veggies_app/screens/search_screen.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +21,7 @@ import './screens/add_address_screen.dart';
 import './screens/order_summary_screen.dart';
 import './providers/checkout_provider.dart';
 import './providers/order_provider.dart';
+import './screens/my_orders_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -101,6 +101,7 @@ class _MyAppState extends State<MyApp> {
           '/address-screen': (context) => const AddressScreen(),
           '/add-address-screen': (context) => const AddAddressScreen(),
           '/order-summary-screen': (context) => const OrderSummaryScreen(),
+          '/my-orders-screen': (context) => const MyOrdersScreen(),
         },
       ),
     );

@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../ui/colors.dart';
-import '../screens/search_screen.dart';
 import '../widgets/cart_item.dart';
 import '../providers/cart_provider.dart';
 import '../models/cart_model.dart';
 import '../screens/address_screen.dart';
-import '../providers/checkout_provider.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
