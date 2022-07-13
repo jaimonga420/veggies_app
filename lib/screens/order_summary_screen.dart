@@ -98,58 +98,60 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
             child: const Text('Place Order'),
           ),
         ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 150,
-              child: ListView.builder(
-                  itemCount: addressItemsList.length,
-                  itemBuilder: ((context, index) {
-                    return AddressItem(
-                        name: addressItemsList[index].name,
-                        street: addressItemsList[index].street,
-                        area: addressItemsList[index].area,
-                        city: addressItemsList[index].city,
-                        pincode: addressItemsList[index].pincode,
-                        addressType: addressItemsList[index].addressType,
-                        phone: addressItemsList[index].phone,
-                        isFromOrderScreen: true);
-                  })),
-            ),
-            ExpansionTile(title: const Text('Products'), children: [
-              ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: cartItemsList.length,
-                  itemBuilder: (context, index) {
-                    return OrderItem(
-                      imagePath: cartItemsList[index].imagePath,
-                      price: cartItemsList[index].price,
-                      productName: cartItemsList[index].productName,
-                      quantity: cartItemsList[index].quantity,
-                      totalPrice: cartItemsList[index].totalPrice,
-                    );
-                  })
-            ]),
-            const Padding(
-              padding: EdgeInsets.only(left: 20, top: 20),
-              child: Text(
-                'Select Payment Method',
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 150,
+                child: ListView.builder(
+                    itemCount: addressItemsList.length,
+                    itemBuilder: ((context, index) {
+                      return AddressItem(
+                          name: addressItemsList[index].name,
+                          street: addressItemsList[index].street,
+                          area: addressItemsList[index].area,
+                          city: addressItemsList[index].city,
+                          pincode: addressItemsList[index].pincode,
+                          addressType: addressItemsList[index].addressType,
+                          phone: addressItemsList[index].phone,
+                          isFromOrderScreen: true);
+                    })),
               ),
-            ),
-            RadioListTile(
-              value: PaymentOptionstype.cod,
-              groupValue: paymentOption,
-              onChanged: (value) {
-                setState(() {
-                  paymentOption = value as PaymentOptionstype;
-                });
-              },
-              title: const Text('COD'),
-            )
-          ],
+              ExpansionTile(title: const Text('Products'), children: [
+                ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: cartItemsList.length,
+                    itemBuilder: (context, index) {
+                      return OrderItem(
+                        imagePath: cartItemsList[index].imagePath,
+                        price: cartItemsList[index].price,
+                        productName: cartItemsList[index].productName,
+                        quantity: cartItemsList[index].quantity,
+                        totalPrice: cartItemsList[index].totalPrice,
+                      );
+                    })
+              ]),
+              const Padding(
+                padding: EdgeInsets.only(left: 20, top: 20),
+                child: Text(
+                  'Select Payment Method',
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
+                ),
+              ),
+              RadioListTile(
+                value: PaymentOptionstype.cod,
+                groupValue: paymentOption,
+                onChanged: (value) {
+                  setState(() {
+                    paymentOption = value as PaymentOptionstype;
+                  });
+                },
+                title: const Text('COD'),
+              )
+            ],
+          ),
         ));
   }
 }

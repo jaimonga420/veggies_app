@@ -29,6 +29,7 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     List<ProductModel> queriedSearchItems = searchItemFn(widget.query);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: AppColor.scaffoldColor,
       appBar: AppBar(
         elevation: 0,

@@ -88,7 +88,6 @@ class _VeggiesContainerState extends State<VeggiesContainer> {
                                 fontWeight: FontWeight.w500,
                                 color: Colors.black),
                           ),
-                          
                         ],
                       ),
                     ),

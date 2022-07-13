@@ -28,16 +28,17 @@ class MyOrdersScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          ListView.builder(
-              shrinkWrap: true,
-              itemCount: ordersList.length,
-              itemBuilder: (context, index) {
-                return OrderedItem(
-                    orderData: ordersList[index] ,);
-              })
-        ],
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: ListView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: ordersList.length,
+            itemBuilder: (context, index) {
+              return OrderedItem(
+                orderData: ordersList[index],
+              );
+            }),
       ),
     );
   }
